@@ -1,0 +1,11 @@
+
+mvn clean install
+
+docker-compose up
+
+http://localhost:8080/
+
+Check the messages in IBM MQ
+
+https://localhost:9443/ibmmq/console   (admin/passw0rd)
+

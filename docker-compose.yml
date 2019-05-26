@@ -1,0 +1,26 @@
+version: '3'
+
+services:
+  ibm-mq-service:
+    container_name: ibm-mq-container
+    image: ibmcom/mq
+    ports:
+      - 1414:1414
+      - 9443:9443
+    environment:
+      - LICENSE=accept
+      - MQ_QMGR_NAME=QM1
+    volumes:
+      - qm1data-7:/mnt/mqm
+  ibm-mq-send-service:
+    container_name: ibm-mq-send-container
+    image: ibm-mq-send-image
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    links:
+      - ibm-mq-service
+    ports:
+      - 8080:8080
+volumes:
+  qm1data-7:
